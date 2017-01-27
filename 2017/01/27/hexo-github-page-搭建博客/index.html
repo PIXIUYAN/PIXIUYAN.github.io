@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="hexo,博客搭建," />
 
 
 
@@ -84,15 +84,54 @@
 
 
 
-<meta name="description" content="宠辱不惊，闲看庭前花开花落；去留无意，漫随天外云卷云舒">
-<meta property="og:type" content="website">
-<meta property="og:title" content="(●´∀｀●)ﾉ">
-<meta property="og:url" content="https://pixiuyan.github.io/index.html">
+<meta name="description" content="作为一个有梦想的程序员,如果不能有个一个属于自己的博客,那这人生也就少了些许乐趣了.所以,这两天我基于hexo和github page 搭建了一个个人博客. 并且做了一下的总结,希望可以帮助他人搭建出属于自己的博客.
+准备
+git 安装
+github账号申请  (官网)
+node.js 安装 (由于hexo是node.js平台下的,所以要先安装node.js)
+hexo 安装(一个很nice的静态">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hexo+github page 搭建博客">
+<meta property="og:url" content="https://pixiuyan.github.io/2017/01/27/hexo-github-page-搭建博客/index.html">
 <meta property="og:site_name" content="(●´∀｀●)ﾉ">
-<meta property="og:description" content="宠辱不惊，闲看庭前花开花落；去留无意，漫随天外云卷云舒">
+<meta property="og:description" content="作为一个有梦想的程序员,如果不能有个一个属于自己的博客,那这人生也就少了些许乐趣了.所以,这两天我基于hexo和github page 搭建了一个个人博客. 并且做了一下的总结,希望可以帮助他人搭建出属于自己的博客.
+准备
+git 安装
+github账号申请  (官网)
+node.js 安装 (由于hexo是node.js平台下的,所以要先安装node.js)
+hexo 安装(一个很nice的静态">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1956910-9a6a11a83cfec374.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1956910-7147fda0ee948a0c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1956910-edd651499498cd80.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1956910-ca5174111e8f78ce.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1956910-51d7d45591f57bcf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1956910-9921e2cc1b604ac1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1956910-ff0a5181dd86eac7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1956910-d21ae9b1ebec579a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1956910-fa9ba54dc1e54255.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1956910-351b9e03f4357f6a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1956910-2d660679cec01867.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1956910-ba77ef32bc895ee6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1956910-aaa041b967848faa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1956910-d1c94d86e5d9fac3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1956910-c8f73efc58fe4e5f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1956910-5634788fc1b0cb86.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1956910-40a507aa8782a278.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1956910-a543c6561f877b58.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1956910-3646477f0bb872f1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1956910-564142cc89cb6b5c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1956910-521e0514fae4e254.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1956910-db2ba3cdb5abdc47.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2017-01-27T15:53:38.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="(●´∀｀●)ﾉ">
-<meta name="twitter:description" content="宠辱不惊，闲看庭前花开花落；去留无意，漫随天外云卷云舒">
+<meta name="twitter:title" content="hexo+github page 搭建博客">
+<meta name="twitter:description" content="作为一个有梦想的程序员,如果不能有个一个属于自己的博客,那这人生也就少了些许乐趣了.所以,这两天我基于hexo和github page 搭建了一个个人博客. 并且做了一下的总结,希望可以帮助他人搭建出属于自己的博客.
+准备
+git 安装
+github账号申请  (官网)
+node.js 安装 (由于hexo是node.js平台下的,所以要先安装node.js)
+hexo 安装(一个很nice的静态">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/1956910-9a6a11a83cfec374.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
 
@@ -120,13 +159,13 @@
 
 
 
-  <link rel="canonical" href="https://pixiuyan.github.io/"/>
+  <link rel="canonical" href="https://pixiuyan.github.io/2017/01/27/hexo-github-page-搭建博客/"/>
 
 
 
 
 
-  <title> (●´∀｀●)ﾉ </title>
+  <title> hexo+github page 搭建博客 | (●´∀｀●)ﾉ </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -147,9 +186,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left 
-   page-home 
- ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -230,9 +267,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -265,10 +302,7 @@
             
             
               
-                
-                <a class="post-title-link" href="/2017/01/27/hexo-github-page-搭建博客/" itemprop="url">
-                  hexo+github page 搭建博客
-                </a>
+                hexo+github page 搭建博客
               
             
           </h1>
@@ -319,9 +353,7 @@
       
 
       
-        
-          
-            <p>作为一个有梦想的程序员,如果不能有个一个属于自己的博客,那这人生也就少了些许乐趣了.所以,这两天我基于hexo和github page 搭建了一个个人博客. 并且做了一下的总结,希望可以帮助他人搭建出属于自己的博客.</p>
+        <p>作为一个有梦想的程序员,如果不能有个一个属于自己的博客,那这人生也就少了些许乐趣了.所以,这两天我基于hexo和github page 搭建了一个个人博客. 并且做了一下的总结,希望可以帮助他人搭建出属于自己的博客.</p>
 <h1 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h1><ul>
 <li>git 安装</li>
 <li>github账号申请  (<a href="https://github.com/" target="_blank" rel="external">官网</a>)</li>
@@ -401,37 +433,48 @@
 <p>好了,于是一个属于你的个人博客就搭建好了.再此我要提醒你一下,当你访问你的的博客网址出现404错误时,可以试着耐心的等待15分钟左右,再次刷新一次看看.因为,github给你配置个人站点并不是实时的,所以需要等待一段时间. 当然,如果等了很久你访问你的博客网址还是404错误时,那只能说明你的操作出了问题,那只能你只能查阅资料自己解决了,少年.</p>
 <p>最后给出我的博客的网址 []</p>
 
-          
+      
+    </div>
+
+    <div>
+      
         
+
       
     </div>
 
     <div>
       
-    </div>
+        
 
-    <div>
       
     </div>
 
 
     <footer class="post-footer">
       
-
+        <div class="post-tags">
+          
+            <a href="/tags/hexo/" rel="tag"># hexo</a>
+          
+            <a href="/tags/博客搭建/" rel="tag"># 博客搭建</a>
+          
+        </div>
       
 
       
+
       
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
           
           </div>
@@ -439,6 +482,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -458,8 +505,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1485511502369&di=fbb855d78b3228288185441a2d602f95&imgtype=0&src=http%3A%2F%2Fb.hiphotos.baidu.com%2Fexp%2Fw%3D500%2Fsign%3D40f8d301d61373f0f53f6f9f940e4b8b%2F8601a18b87d6277f0f9479422f381f30e824fcc2.jpg"
@@ -508,6 +564,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#准备"><span class="nav-number">1.</span> <span class="nav-text">准备</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Hexo搭建本地博客服务"><span class="nav-number">2.</span> <span class="nav-text">Hexo搭建本地博客服务</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#更换Hexo的主题样式"><span class="nav-number">3.</span> <span class="nav-text">更换Hexo的主题样式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#将我们的博客部署到github-page上"><span class="nav-number">4.</span> <span class="nav-text">将我们的博客部署到github page上</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
     </div>
@@ -614,6 +686,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
 
   
 
@@ -645,6 +721,10 @@
 
   
 
+  
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid="></script>
+      <!-- UY END -->
   
 
 

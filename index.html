@@ -320,44 +320,19 @@
 
       
         
-          
-            <h1 id="viewport是什么"><a href="#viewport是什么" class="headerlink" title="viewport是什么?"></a>viewport是什么?</h1><pre><code>viewport 是用户网页的可视区域。
+          <h1 id="viewport是什么"><a href="#viewport是什么" class="headerlink" title="viewport是什么?"></a>viewport是什么?</h1><pre><code>viewport 是用户网页的可视区域。
 
 viewport 翻译为中文可以叫做&quot;视区&quot;。
 
 手机浏览器是把页面放在一个虚拟的&quot;窗口&quot;（viewport）中，通常这个虚拟的&quot;窗口&quot;（viewport）比屏幕宽，这样就不用把每个网页挤到很小的窗口中（这样会破坏没有针对手机浏览器优化的网页的布局），用户可以通过平移和缩放来看网页的不同部分。
-</code></pre><h1 id="viewport的进一步理解"><a href="#viewport的进一步理解" class="headerlink" title="viewport的进一步理解"></a>viewport的进一步理解</h1><ul>
-<li><p>在pc浏览器上</p>
-<p>通俗的来讲,viewport可以简单的认为是浏览器上的可视区域,</p>
-<p><img src="http://img.hb.aicdn.com/2c170b112992b4e5334fff1a814753466471d6f78221d-YTMoAG_fw658" alt="Alt text"></p>
-<p>当我们改变窗口大小的时候,可视区域的大小也会随之而改变.</p>
-<p>(<code>原始大小</code>)</p>
-<p><img src="http://img.hb.aicdn.com/6baefaacd80637cf03cecb9c72f4cdcf4721b5796ffbb-lxFgjN_fw658" alt="Alt text"></p>
-<p>(<code>修改后的大小</code>)</p>
-<p><img src="http://img.hb.aicdn.com/5a23885fdb57c8fb3a6395224d6d69be71086c50388d0-UknxFP_fw658" alt="Alt text"> </p>
-</li>
-</ul>
-<pre><code>我们可以看出,当我们修改窗口大小后,浏览器底部变多了个滚动条,以方便我们查看超出可视区域的内容.
-</code></pre><ul>
-<li><p>在手机浏览器上</p>
-<p> 那么当我们把网页放在手机浏览器上呢?我们要知道手机上的浏览器和pc上的浏览器的区别之一便是pc浏览器的可视区域是可以手动改变的,而手机浏览器的可视区域则是固定.一般和手机的宽度相等.<br> 所以,如果不做任何处理的话,pc浏览器的网页放到手机浏览器的应该是这样的:</p>
-</li>
-</ul>
-<p>  <img src="http://img.hb.aicdn.com/4052804c0bf9ef571ea546222770a4792de36e0c6e2e5-0Nfv1D_fw658" alt="Alt text"></p>
-<p>  网页内容超出手机大小,手机浏览器底部会出现一个横向滚动条,这样的话便会在一定程度上影响用于的体验效果.所以为了解决这个问题,viewport变应用而生,(据说是由苹果提出,然后大部分手机厂商都竞相模仿,所以现在我们用的绝大数手机都默认实现了viewport)</p>
-<p>  并且移动终端的viewport要比较麻烦一些，它有两种viewport，分别是展示viewport(visual viewport)和布局viewport(layout viewport)。当我们更加载网页的时候,它会先将网页内容放到一个虚拟的viewport中(layout viewport ,一般这个layout viewport要大于手机屏幕宽度,如Safari iPhone为980px.)然后经过缩放和放大,将其映射到visual viewport,<br>  (而visual viewport的大小一般和手机的宽高相等) .<br>  <img src="http://images.cnitblog.com/blog/130623/201407/300958506337445.png" alt="Alt text"><br>  <img src="http://images.cnitblog.com/blog/130623/201407/300958547434256.png" alt="Alt text"></p>
-<p>  所以一般我们在手机浏览一些只针对桌面浏览器设计的网页(没有做响应式),它是这样的:<br>  <img src="http://img.hb.aicdn.com/9777f6f3bfb569d7fe050d0b4fc84e2f07ac36c45ba80-7RsGnP_fw658" alt="Alt text"></p>
-<p>其布局与原内容一样,并且没有底部的横向滚动条,唯一区别便是要比原内容要小一些,这是因为它经过了缩放,我们可以通过手动放大来使得文字大小适应我们的需求.这样我们变解决了那些只针对桌面设计的网页在手机浏览器上也能更好去浏览.</p>
-<h1 id="viewport-默认大小带来的问题"><a href="#viewport-默认大小带来的问题" class="headerlink" title="viewport 默认大小带来的问题"></a>viewport 默认大小带来的问题</h1><p>手机默认的layout-viewport是多大呢，“layout viewport有多宽？每个浏览器都不一样，Safari iPhone为980px，Opera为850px，Android WebKit为800px，最后IE为974px。”<br>虽然viewport解决了我们的一些问题,但是它也为我们带来了一些遗留问题.</p>
-<p>那就是对于那些专门针对手机设计的页面,我们如果不设置viewport的大小的话,那么会使得我们的网页内容整体缩小了,这样便与我们的设计不相符了.如:</p>
-<p>(<code>符合设计标准的网页内容</code>)<br><img src="http://img.hb.aicdn.com/caa8ae2b080f8694c6594439dd0843812c35ba879038a-Oq0VL7_fw658" alt="Alt text"></p>
-<p>(<code>在没有设置viewport情况下的真实显示的内容</code>)</p>
-<p><img src="http://img.hb.aicdn.com/5bfd6ad2d0a1c9e0399e93b3b495e7e34b66e98aa8ff0-x3ER3S_fw658" alt="Alt text"></p>
-<p>明显看出真实显示的内容与我们原内容的布局排版和内容大小都不有些出入,<br>所以为了解决这个问题,我们可以手动的设置一no下 viewport 的宽度.<br>这里我给出一个通用的设置方案,在我们的head标签添加以下内容:<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<p><img src="http://img.hb.aicdn.com/0543ef917dc77f3740ed9601a6af056c27cd6cceaa75e-t4YYai_fw658" alt="Alt text"></p>
-<p><img src="http://img.hb.aicdn.com/c0fa81557a78b21aac9bccbba61325fa121151d0a2fd1-ByHtRl_fw658" alt="Alt text"><br>这样无论是pc端还是手机浏览器都和我们所预期的结果相同了.</p>
-<h1 id="结束"><a href="#结束" class="headerlink" title="结束"></a>结束</h1>
-          
+</code></pre>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/02/22/浅谈对viewport的理解/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>

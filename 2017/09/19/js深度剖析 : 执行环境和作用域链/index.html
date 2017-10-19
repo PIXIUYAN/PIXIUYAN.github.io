@@ -1,0 +1,783 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="执行上下文execution  context 又称执行上下文或者执行环境.
+执行上下文是JavaScript中一个极为重要的概念. 我们可以简单的理解执行上下文就是我们代码执行时所在的环境. 这个环境中包含着许多对我们来说十分重要的数据. 例如作用域链 , 数据的访问权,执行代码等等 .
+ 当我们的代码在JavaScript中运行时,便会进入不同的执行上下文.  
+其中Global execut">
+<meta property="og:type" content="article">
+<meta property="og:title" content="js深度剖析 : 执行环境和作用域链">
+<meta property="og:url" content="https://pixiuyan.github.io/2017/09/19/js深度剖析 : 执行环境和作用域链/index.html">
+<meta property="og:site_name" content="(●´∀｀●)ﾉ">
+<meta property="og:description" content="执行上下文execution  context 又称执行上下文或者执行环境.
+执行上下文是JavaScript中一个极为重要的概念. 我们可以简单的理解执行上下文就是我们代码执行时所在的环境. 这个环境中包含着许多对我们来说十分重要的数据. 例如作用域链 , 数据的访问权,执行代码等等 .
+ 当我们的代码在JavaScript中运行时,便会进入不同的执行上下文.  
+其中Global execut">
+<meta property="og:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1504353731205&di=05dc13869833e4ccba51a61a08638d6e&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimage%2Fc0%253Dshijue1%252C0%252C0%252C294%252C40%2Fsign%3D7725dad5df62853586edda62f8861cb3%2Fe4dde71190ef76c64b9a5b0c9716fdfaaf516749.jpg">
+<meta property="og:image" content="http://osqfjz4wb.bkt.clouddn.com/2017-09-02-javascript作用域.png">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1956910-7ab4d20f01e7355e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://osqfjz4wb.bkt.clouddn.com/2017-09-02-创建AO过程.png">
+<meta property="og:image" content="http://osqfjz4wb.bkt.clouddn.com/2017-09-02-作用域链.png">
+<meta property="og:image" content="http://osqfjz4wb.bkt.clouddn.com/2017-09-02-我在路上.jpg">
+<meta property="og:updated_time" content="2017-10-19T00:18:14.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="js深度剖析 : 执行环境和作用域链">
+<meta name="twitter:description" content="执行上下文execution  context 又称执行上下文或者执行环境.
+执行上下文是JavaScript中一个极为重要的概念. 我们可以简单的理解执行上下文就是我们代码执行时所在的环境. 这个环境中包含着许多对我们来说十分重要的数据. 例如作用域链 , 数据的访问权,执行代码等等 .
+ 当我们的代码在JavaScript中运行时,便会进入不同的执行上下文.  
+其中Global execut">
+<meta name="twitter:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1504353731205&di=05dc13869833e4ccba51a61a08638d6e&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimage%2Fc0%253Dshijue1%252C0%252C0%252C294%252C40%2Fsign%3D7725dad5df62853586edda62f8861cb3%2Fe4dde71190ef76c64b9a5b0c9716fdfaaf516749.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://pixiuyan.github.io/2017/09/19/js深度剖析 : 执行环境和作用域链/"/>
+
+
+
+
+
+  <title> js深度剖析 : 执行环境和作用域链 | (●´∀｀●)ﾉ </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">(●´∀｀●)ﾉ</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle">个人技术博客</p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://pixiuyan.github.io/2017/09/19/js深度剖析 : 执行环境和作用域链/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="小貔貅">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="http://img0.imgtn.bdimg.com/it/u=214261075,182751371&fm=27&gp=0.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="(●´∀｀●)ﾉ">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="(●´∀｀●)ﾉ" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                js深度剖析 : 执行环境和作用域链
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-09-19T08:15:45+08:00">
+                2017-09-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="执行上下文"><a href="#执行上下文" class="headerlink" title="执行上下文"></a>执行上下文</h2><p><code>execution  context</code> 又称<code>执行上下文</code>或者<code>执行环境</code>.</p>
+<p><code>执行上下文</code>是JavaScript中一个极为重要的概念. 我们可以简单的理解执行上下文就是我们代码执行时所在的环境. 这个环境中包含着许多对我们来说十分重要的数据. 例如作用域链 , 数据的访问权,执行代码等等 .</p>
+<p> 当我们的代码在JavaScript中运行时,便会进入不同的<code>执行上下文</code>.  </p>
+<p>其中<code>Global execution  context</code>是最外围层的一个执行环境 , 即JavaScript代码开始运行的默认环境.也就是我们常说的全局环境.  这个执行上下文是由浏览器创建并初始化的 .        </p>
+<p>除此之外,每个函数都有自己的一个<code>执行上下文</code>. 当我们进行函数调用时, 其<code>执行上下文</code>便会创建. 这也是我们所认为的局部环境( local context) .</p>
+<p><img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1504353731205&amp;di=05dc13869833e4ccba51a61a08638d6e&amp;imgtype=0&amp;src=http%3A%2F%2Fimgsrc.baidu.com%2Fimage%2Fc0%253Dshijue1%252C0%252C0%252C294%252C40%2Fsign%3D7725dad5df62853586edda62f8861cb3%2Fe4dde71190ef76c64b9a5b0c9716fdfaaf516749.jpg" alt=""></p>
+<a id="more"></a>
+<h2 id="执行环境栈"><a href="#执行环境栈" class="headerlink" title="执行环境栈"></a>执行环境栈</h2><p> JavaScript引擎在执行代码之前, 首先会创建一个<code>执行环境栈(execution  context stack)</code> . 然后创建<code>全局环境</code>并将其压入栈中作为栈底. 再之后 , 随着执行流进入函数中,函数的<code>执行上下文</code>便会被推入  <code>执行环境栈</code> 中(即进入一个执行上下文).   而在函数执行完毕后, <code>执行环境栈</code>便会把这个函数的环境弹出 , 并将控制权返回给之前的<code>执行环境</code>.</p>
+<p> 我们来分析一下如下代码中的执行环境栈是如何变化的:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line">  function fn() &#123;</div><div class="line">        function fn2() &#123;&#125;;</div><div class="line">        fn2();</div><div class="line">    &#125;;</div><div class="line">    fn();</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+<p>其大致流程如下图</p>
+<p><img src="http://osqfjz4wb.bkt.clouddn.com/2017-09-02-javascript作用域.png" alt="javascript环境栈"></p>
+<h3 id="variable-object"><a href="#variable-object" class="headerlink" title="variable object"></a>variable object</h3><p>在<code>javascript高级程序</code>中是这样描述<code>variable object</code>的:</p>
+<blockquote>
+<p>每个执行环境都有一个与之相关联的对象,并且环境中定义的变量和函数都在其中.</p>
+</blockquote>
+<p>由此我们便知道,<code>variable object</code>中存储了在上下文中定义的变量和函数声明. 也就是说我们所使用的变量或者函数的<code>标识符</code>则都是在<code>variable object</code>上来查询其是否可用. </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">注: 下文会将其简写为VO</div></pre></td></tr></table></figure>
+<p>通常情况下,一个<code>variable object</code>有以下信息:</p>
+<ul>
+<li>变量 (var, Variable Declaration);</li>
+<li>函数声明 (Function Declaration, FD);</li>
+<li>函数的形参</li>
+</ul>
+<p>并且因为<code>执行环境</code>的不同,所以<code>variable object</code>也有更细的划分或是不同的表现.其关系如下图:</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1956910-7ab4d20f01e7355e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="variable object"></p>
+<ul>
+<li><p><em>global object</em>   </p>
+<p>对于全局环境,浏览器中用<code>window</code>对象来作为它的<code>variable object</code> . 该全局对象中存储着JavaScript所定义的全部内置对象和全局函数,以及宿主环境的宿主对象和我们在全局环境中定义的函数和变量等.</p>
+<p>这也是为什么我们在全局环境中声明一个变量和函数后,其会成为<code>window对象</code>的属性.</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="number">11</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>)</span>&#123;&#125;;</div><div class="line"></div><div class="line"><span class="built_in">window</span>.a ===a ; <span class="comment">// -&gt; true </span></div><div class="line"><span class="built_in">window</span>.fn ===fn; <span class="comment">// -&gt; true</span></div></pre></td></tr></table></figure>
+<ul>
+<li><p><em>activation object</em></p>
+<p>对于局部环境,我们通常用<code>activation object</code>来作为<code>variable object</code> .并且这个对象我们是<strong>不能用代码访问到</strong>的.这个对象中存储着我们在函数内部声明的变量和函数以及参数(包含隐式参数arguments). </p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">注: 下文会将其简写为AO</div></pre></td></tr></table></figure>
+<p>我们还要说明一下,<code>activation object</code>在最开始的时候只有一个变量,即arguments对象(这个对象在全局环境上是不存在的).</p>
+<h2 id="执行上下文的两个阶段"><a href="#执行上下文的两个阶段" class="headerlink" title="执行上下文的两个阶段"></a>执行上下文的两个阶段</h2><blockquote>
+<p>常言道: 兵马未动 粮草先行</p>
+</blockquote>
+<p>因此当我们进入一个<code>执行上下文</code>的时候,js解释器并不会立即就去执行其内部代码, 而是先做一些预备工作来保证之后的执行无后顾之忧. </p>
+<p>其大致可分为两个阶段:</p>
+<ul>
+<li>准备阶段<ul>
+<li>创建<code>activation object</code></li>
+<li>创建<code>Scope chain</code>(即作用域链)</li>
+<li>设置<code>this</code>的值</li>
+<li>抽离出执行代码.(剔除声明部分的代码)</li>
+</ul>
+</li>
+<li>激活/执行阶段<ul>
+<li>设置变量的值、函数的引用，然后解释/执行代码</li>
+</ul>
+</li>
+</ul>
+<p>然后下文中我们会着重讲一下<code>准备阶段</code>中一些过程的细节.</p>
+<h3 id="AO-activation-object-的创建过程"><a href="#AO-activation-object-的创建过程" class="headerlink" title="AO(activation object)的创建过程"></a><strong>AO(activation object)</strong>的创建过程</h3><ol>
+<li><p>在创建<code>activation object</code>之初,就为其添加了一个名为<code>arguments</code>对象,里面存储着函数<strong>调用</strong>时传入的所有参数.</p>
+</li>
+<li><p>扫描函数的形式参数</p>
+<ul>
+<li>对于所有找到的参数,将由参数名和其对应值以<code>key-value</code>的形式存入VO/AO中,如果没有传递对应参数的话，那么将参数名和undefined值以<code>key-value</code>的形式存入VO/AO中.</li>
+</ul>
+</li>
+<li><p>扫描函数内部代码，查找函数声明（Function declaration).</p>
+<ul>
+<li>对于所有找到的函数声明,将函数名和函数引用存入VO/AO中.</li>
+<li>并且如果VO/AO中已经有同名的标识符, 那么就对其标识符的引用进行覆盖.</li>
+</ul>
+</li>
+<li><p>扫描函数内部代码，查找变量声明（Variable declaration）</p>
+<ul>
+<li>对于所有找到的变量声明，将变量名存入VO/AO中，并初始化为”undefined”.</li>
+<li>如果变量名称跟已经声明的参数或函数名相同,则变量声明不会干扰已经存在的标识符和其引用.</li>
+</ul>
+</li>
+</ol>
+<p>我们以如下代码为例:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">a,b</span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> z ;</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(a,b)</div><div class="line">    &#125;</div><div class="line">    z = a+b;</div><div class="line">    <span class="keyword">return</span> z;</div><div class="line">&#125;</div><div class="line"></div><div class="line">add(<span class="number">10</span>,<span class="number">20</span>)</div></pre></td></tr></table></figure>
+<p>接着我们来分析一下<code>AO</code>的创建过程, 如图:<br><img src="http://osqfjz4wb.bkt.clouddn.com/2017-09-02-创建AO过程.png" alt="创建AO过程"></p>
+<p>然后我们来验证一下当标识符命名发生冲突时会怎样:</p>
+<ul>
+<li>参数名和函数名冲突</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params">x</span>)</span>&#123;</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">x</span>(<span class="params"></span>)</span>&#123;&#125;;</div><div class="line">    <span class="built_in">console</span>.log(x)</div><div class="line">&#125;</div><div class="line"></div><div class="line">fn(<span class="number">10</span>) <span class="comment">// -&gt; ƒ x()&#123;&#125;</span></div></pre></td></tr></table></figure>
+<p> 我们会发现当参数名和函数名冲突时,函数的引用值会覆盖参数名的引用值.</p>
+<ul>
+<li>参数名和变量名冲突</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params">x</span>)</span>&#123;</div><div class="line">         <span class="keyword">var</span> x ;</div><div class="line">         <span class="built_in">console</span>.log(x)</div><div class="line">     &#125;</div><div class="line">     </div><div class="line"> fn(<span class="number">10</span>) <span class="comment">// -&gt; 10</span></div></pre></td></tr></table></figure>
+<p> 我们会发现当参数名和变量名冲突时,变量声明不会干扰已经存在的标识符和其引用.</p>
+<ul>
+<li>变量名和函数名冲突</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>)</span>&#123;</div><div class="line">          <span class="function"><span class="keyword">function</span> <span class="title">x</span>(<span class="params"></span>)</span>&#123;&#125;;</div><div class="line">          <span class="keyword">var</span> x ;</div><div class="line">         <span class="built_in">console</span>.log(x)</div><div class="line">     &#125;</div><div class="line">     </div><div class="line"> fn() <span class="comment">// -&gt;  ƒ x()&#123;&#125;</span></div></pre></td></tr></table></figure>
+<p>这一结果又刚好进一步证明了我们上一步得出结论.</p>
+<p>我们再来看最后一段代码:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(x)</div><div class="line">    <span class="keyword">var</span> x = <span class="number">10</span> ;</div><div class="line">&#125;</div><div class="line">fn() <span class="comment">// -&gt; undefined</span></div></pre></td></tr></table></figure>
+<p>我们看见了,其输出的结果是<code>undefined</code>. 不知你有没有发现,上述代码与变量提升有关.而<code>AO</code>的创建过程则正是造成<code>变量提升</code>这一现象的根源.</p>
+<h3 id="函数对象的-scope-属性"><a href="#函数对象的-scope-属性" class="headerlink" title="函数对象的[[scope]]属性"></a>函数对象的<code>[[scope]]</code>属性</h3><blockquote>
+<p>在JavaScript中, 一切皆为对象</p>
+</blockquote>
+<p>JavaScript 中每个函数都表示为一个函数对象（函数实例），既然是对象，就有相关的属性和方法。除了正常的属性，函数对象具有仅供 JavaScript 引擎内部使用，但不能通过代码访问的一系列内部属性。这些属性中，其中一个就是 [[scope]] 属性。</p>
+<p> 函数内部的 <code>[[scope]]</code>属性实际是一个<code>variable object</code>的集合.其包含了当前<code>执行环境栈</code>中所有<code>执行上下文</code>的<code>variable object</code>. 而这也正是<code>作用链</code>的雏形.</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">注意: 因为该函数还未调用,所以执行环境栈中没有这个函数的执行上下文.</div></pre></td></tr></table></figure>
+<h3 id="作用域链"><a href="#作用域链" class="headerlink" title="作用域链"></a>作用域链</h3><p> 正如上文所述, 执行上下文中有很多对我们来说十分重要的数据. 除了<code>variable object</code>以外 ,作用域链也是其中之一. </p>
+<ul>
+<li><p>创建<code>作用域链</code>的过程: </p>
+<ol>
+<li>将函数内部[scope]属性中的所有对象按顺序复制到作用域链中,完成作用域链的初始化.</li>
+<li>将当前<code>执行上下文</code>的<code>variable object</code>放入作用域链的顶端,彻底完成作用域链的创建.</li>
+</ol>
+</li>
+</ul>
+<p>正因此,当前执行上下文的<code>variable object</code>一直都是其作用域链的开头 .</p>
+<ul>
+<li>标志符的查询</li>
+</ul>
+<blockquote>
+<p>当在某个环境中为了读取或是写入而引用一个标志符,必须通过搜索来确定标识符代表什么. 搜索过程从作用域链的顶端开始,向上逐级查询与给定名字匹配的标识符.</p>
+</blockquote>
+<p>在此我们再详细说明一下其搜索过程的细节.  如果在局部环境中找到了该标识符,搜索就会停止,变量就绪. 若是没有找到该<code>变量名/函数名</code> ,那么就会沿着作用域链查找.搜索过程会一种追溯到全局对象上,若是还没有查找到该标识符,那么便意味着该变量/函数并未声明,输出错误信息.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="number">10</span> ;</div><div class="line"><span class="keyword">var</span> b = <span class="number">100</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>)</span>&#123;</div><div class="line">     <span class="keyword">var</span> b = <span class="number">20</span> ;</div><div class="line">     <span class="built_in">console</span>.log(a) <span class="comment">// -&gt; 10 </span></div><div class="line">     <span class="built_in">console</span>.log(b) <span class="comment">// -&gt; 20</span></div><div class="line">&#125;</div><div class="line">fn()</div></pre></td></tr></table></figure>
+<p>以上段代码为例,其在沿着作用域链上的查询过程如图:</p>
+<p><img src="http://osqfjz4wb.bkt.clouddn.com/2017-09-02-作用域链.png" alt="作用域链"></p>
+<h2 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h2><p>写这篇文章的原因来自一次偶然的思考, 然后便是大量的翻阅相关资料.甚至为此我还用我那有些蹩脚的英文翻墙去查阅一些外文资料.其过程自然有些艰辛的,但是黄天不负有心人,我总算是理解了JavaScript中的一些核心概念.并且我能感受的到,一扇新的大门即将为我开启, 征程还未停止.不过我有些喜欢上了这种<code>在路上</code>的感觉了.</p>
+<p><img src="http://osqfjz4wb.bkt.clouddn.com/2017-09-02-我在路上.jpg" alt="我在路上"></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/19/正则表达式必知必会-读书笔记/" rel="next" title="正则表达式必知必会-读书笔记">
+                <i class="fa fa-chevron-left"></i> 正则表达式必知必会-读书笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://img0.imgtn.bdimg.com/it/u=214261075,182751371&fm=27&gp=0.jpg"
+               alt="小貔貅" />
+          <p class="site-author-name" itemprop="name">小貔貅</p>
+          <p class="site-description motion-element" itemprop="description">宠辱不惊，闲看庭前花开花落；去留无意，漫随天外云卷云舒</p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#执行上下文"><span class="nav-number">1.</span> <span class="nav-text">执行上下文</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#执行环境栈"><span class="nav-number">2.</span> <span class="nav-text">执行环境栈</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#variable-object"><span class="nav-number">2.1.</span> <span class="nav-text">variable object</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#执行上下文的两个阶段"><span class="nav-number">3.</span> <span class="nav-text">执行上下文的两个阶段</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#AO-activation-object-的创建过程"><span class="nav-number">3.1.</span> <span class="nav-text">AO(activation object)的创建过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数对象的-scope-属性"><span class="nav-number">3.2.</span> <span class="nav-text">函数对象的[[scope]]属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#作用域链"><span class="nav-number">3.3.</span> <span class="nav-text">作用域链</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结束语"><span class="nav-number">4.</span> <span class="nav-text">结束语</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">小貔貅</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid="></script>
+      <!-- UY END -->
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

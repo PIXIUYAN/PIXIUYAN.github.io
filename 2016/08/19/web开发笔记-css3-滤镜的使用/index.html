@@ -1,0 +1,734 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="web,css,滤镜," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="简介最近几天都在忙事情,有几天没有笔记了.今天总算是忙里偷闲,打算写一下css3中滤镜的简单用法.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="web开发笔记-css3 滤镜的使用">
+<meta property="og:url" content="https://pixiuyan.github.io/2016/08/19/web开发笔记-css3-滤镜的使用/index.html">
+<meta property="og:site_name" content="(●´∀｀●)ﾉ">
+<meta property="og:description" content="简介最近几天都在忙事情,有几天没有笔记了.今天总算是忙里偷闲,打算写一下css3中滤镜的简单用法.">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1956910-f7fdc8dda7ad1981.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1956910-5ef86f8af7845d71.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1956910-d6e632849f85a5d4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1956910-016e8ba24cd462a0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1956910-9967c94f54d5f021.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1956910-3e92e87f8ac38337.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1956910-acb316b7e4cf97f8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1956910-745c41c4a7eae855.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1956910-56fd61ea2db62df7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2017-10-18T23:48:22.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="web开发笔记-css3 滤镜的使用">
+<meta name="twitter:description" content="简介最近几天都在忙事情,有几天没有笔记了.今天总算是忙里偷闲,打算写一下css3中滤镜的简单用法.">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/1956910-f7fdc8dda7ad1981.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://pixiuyan.github.io/2016/08/19/web开发笔记-css3-滤镜的使用/"/>
+
+
+
+
+
+  <title> web开发笔记-css3 滤镜的使用 | (●´∀｀●)ﾉ </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">(●´∀｀●)ﾉ</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle">个人技术博客</p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://pixiuyan.github.io/2016/08/19/web开发笔记-css3-滤镜的使用/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="小貔貅">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="http://img0.imgtn.bdimg.com/it/u=214261075,182751371&fm=27&gp=0.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="(●´∀｀●)ﾉ">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="(●´∀｀●)ﾉ" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                web开发笔记-css3 滤镜的使用
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-08-19T07:31:27+08:00">
+                2016-08-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>最近几天都在忙事情,有几天没有笔记了.今天总算是忙里偷闲,打算写一下css3中滤镜的简单用法.</p>
+ <a id="more"></a>
+<h1 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h1><blockquote>
+<p>filter 属性定义了元素(通常是&lt;img标签 )的可视效果(例如：模糊与饱和度)。</p>
+</blockquote>
+<ul>
+<li>blur(px)<br>给图像设置高斯模糊。”radius”一值设定高斯函数的标准差，或者是屏幕上以多少像素融在一起， 所以值越大越模糊；如果没有设定值，则默认是0；这个参数可设置css长度值，但不接受百分比值。上代码!</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">-css :</div><div class="line">  .img-one &#123;</div><div class="line">            background: no-repeat url(&apos;./../image/one.jpg&apos;) center;</div><div class="line">            background-size: cover;</div><div class="line">            width: 192.0px;</div><div class="line">            height: 108.2px;</div><div class="line">        &#125;</div><div class="line">   .blur &#123;</div><div class="line">            -webkit-filter: blur(5px);</div><div class="line">        &#125;</div><div class="line">-html:</div><div class="line">    &lt;!--原图--&gt;</div><div class="line">    &lt;div class=&quot;img-one&quot;&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line">    &lt;!--blur--&gt;</div><div class="line">    &lt;div class=&quot;img-one blur&quot;&gt;</div><div class="line">    &lt;/div&gt;</div></pre></td></tr></table></figure>
+<p><img src="http://upload-images.jianshu.io/upload_images/1956910-f7fdc8dda7ad1981.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="blur.png"></p>
+<hr>
+<p>　</p>
+<ul>
+<li>brightness(<em>%</em>) <blockquote>
+<p>给图片应用一种线性乘法，使其看起来更亮或更暗。如果值是0%，图像会全黑。值是100%，则图像无变化。其他的值对应线性乘数效果。值超过100%也是可以的，图像会比原来更亮。如果没有设定值，默认是1。</p>
+</blockquote>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">-css:  </div><div class="line">.brightness &#123;</div><div class="line">            -webkit-filter: brightness(150%);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">-html: </div><div class="line">&lt;!--原图--&gt;</div><div class="line">    &lt;div class=&quot;img-one&quot;&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line">    &lt;!--brightness--&gt;</div><div class="line">    &lt;div class=&quot;img-one brightness&quot;&gt;</div><div class="line">    &lt;/div&gt;</div></pre></td></tr></table></figure>
+<p><img src="http://upload-images.jianshu.io/upload_images/1956910-5ef86f8af7845d71.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="brightness.png"></p>
+<hr>
+<ul>
+<li>contrast(<em>%</em>)<blockquote>
+<p>调整图像的对比度。值是0%的话，图像会全黑。值是100%，图像不变。值可以超过100%，意味着会运用更低的对比。若没有设置值，默认是1。</p>
+</blockquote>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">-css:</div><div class="line"> .contrast &#123;</div><div class="line">            -webkit-filter: contrast(150%)</div><div class="line">        &#125;</div><div class="line">-html:</div><div class="line"> &lt;!--原图--&gt;</div><div class="line">    &lt;div class=&quot;img-one&quot;&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line">    &lt;!--contrast--&gt;</div><div class="line">    &lt;div class=&quot;img-one contrast&quot;&gt;</div></pre></td></tr></table></figure>
+<h2 id=""><a href="#" class="headerlink" title=""></a><img src="http://upload-images.jianshu.io/upload_images/1956910-d6e632849f85a5d4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="contrast.png"></h2><ul>
+<li>drop-shadow(<strong>h-shadow v-shadow blur spread color</strong>)<blockquote>
+<p>给图像设置一个阴影效果。阴影是合成在图像下面，可以有模糊度的，可以以特定颜色画出的遮罩图的偏移版本。 函数接受<shadow>(在CSS3背景中定义)类型的值，除了”inset”关键字是不允许的。该函数与已有的box-shadow box-shadow属性很相似；不同之处在于，通过滤镜，一些浏览器为了更好的性能会提供硬件加速.</shadow></p>
+</blockquote>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">-css:</div><div class="line"> .drop-shadow &#123;</div><div class="line">            -webkit-filter: drop-shadow(5px 5px 5px black)</div><div class="line">        &#125;</div><div class="line">-html:</div><div class="line"> &lt;!--原图--&gt;</div><div class="line">    &lt;div class=&quot;img-one&quot;&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line">    &lt;!--drop-shadow--&gt;</div><div class="line">    &lt;div class=&quot;img-one drop-shadow&quot;&gt;</div><div class="line">    &lt;/div&gt;</div></pre></td></tr></table></figure>
+<h2 id="-1"><a href="#-1" class="headerlink" title=""></a><img src="http://upload-images.jianshu.io/upload_images/1956910-016e8ba24cd462a0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="drop-shadow.png"></h2><ul>
+<li>grayscale(<em>%</em>) <blockquote>
+<p>将图像转换为灰度图像。值定义转换的比例。值为100%则完全转为灰度图像，值为0%图像无变化。值在0%到100%之间，则是效果的线性乘子。若未设置，值默认是0；</p>
+</blockquote>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">-css:</div><div class="line">  .grayscale &#123;</div><div class="line">            -webkit-filter: grayscale(80%)</div><div class="line">        &#125;</div><div class="line">-html:</div><div class="line">&lt;!--原图--&gt;</div><div class="line">    &lt;div class=&quot;img-one&quot;&gt;</div><div class="line"></div><div class="line">    &lt;/div&gt;</div><div class="line">    &lt;!--grayscale--&gt;</div><div class="line">    &lt;div class=&quot;img-one grayscale&quot;&gt;</div><div class="line"></div><div class="line">    &lt;/div&gt;</div></pre></td></tr></table></figure>
+<h2 id="-2"><a href="#-2" class="headerlink" title=""></a><img src="http://upload-images.jianshu.io/upload_images/1956910-9967c94f54d5f021.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="grayscale.png"></h2><ul>
+<li>hue-rotate(<em>deg</em>)<blockquote>
+<p>给图像应用色相旋转。”angle”一值设定图像会被调整的色环角度值。值为0deg，则图像无变化。若值未设置，默认值是0deg。该值虽然没有最大值，超过360deg的值相当于又绕一圈。</p>
+</blockquote>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">-css:</div><div class="line">    .hue-rotate &#123;</div><div class="line">            -webkit-filter: hue-rotate(90deg);</div><div class="line">        &#125;</div><div class="line">-html : </div><div class="line">  &lt;!--原图--&gt;</div><div class="line">    &lt;div class=&quot;img-one&quot;&gt;</div><div class="line"></div><div class="line">    &lt;/div&gt;</div><div class="line">    &lt;!--hue-rotate--&gt;</div><div class="line">    &lt;div class=&quot;img-one hue-rotate&quot;&gt;</div><div class="line"></div><div class="line">    &lt;/div&gt;</div></pre></td></tr></table></figure>
+<h2 id="-3"><a href="#-3" class="headerlink" title=""></a><img src="http://upload-images.jianshu.io/upload_images/1956910-3e92e87f8ac38337.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="hue-rotate.png"></h2><ul>
+<li>invert(<em>%</em>)<blockquote>
+<p>反转输入图像。值定义转换的比例。100%的价值是完全反转。值为0%则图像无变化。值在0%和100%之间，则是效果的线性乘子。 若值未设置，值默认是0。</p>
+</blockquote>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">-css:</div><div class="line">  .invert &#123;</div><div class="line">            -webkit-filter: invert(80%)</div><div class="line">        &#125;</div><div class="line">-html:</div><div class="line">&lt;!--原图--&gt;</div><div class="line">    &lt;div class=&quot;img-one&quot;&gt;</div><div class="line"></div><div class="line">    &lt;/div&gt;</div><div class="line">    &lt;!--invert--&gt;</div><div class="line">    &lt;div class=&quot;img-one invert&quot;&gt;</div><div class="line"></div><div class="line">    &lt;/div&gt;</div></pre></td></tr></table></figure>
+<p><img src="http://upload-images.jianshu.io/upload_images/1956910-acb316b7e4cf97f8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="invert.png"></p>
+<ul>
+<li>saturate(<em>%</em>)<blockquote>
+<p>转换图像饱和度。值定义转换的比例。值为0%则是完全不饱和，值为100%则图像无变化。其他值，则是效果的线性乘子。超过100%的值是允许的，则有更高的饱和度。 若值未设置，值默认是1。</p>
+</blockquote>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">-css:</div><div class="line">.saturate &#123;</div><div class="line">            -webkit-filter: saturate(500%)</div><div class="line">        &#125;</div><div class="line">-html :</div><div class="line"> &lt;!--原图--&gt;</div><div class="line">    &lt;div class=&quot;img-one&quot;&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line">    &lt;!--saturate--&gt;</div><div class="line">    &lt;div class=&quot;img-one saturate&quot;&gt;</div><div class="line">    &lt;/div&gt;</div></pre></td></tr></table></figure>
+<h2 id="-4"><a href="#-4" class="headerlink" title=""></a><img src="http://upload-images.jianshu.io/upload_images/1956910-745c41c4a7eae855.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="saturate.png"></h2><ul>
+<li>sepia(<em>%</em>)<blockquote>
+<p>将图像转换为深褐色。值定义转换的比例。值为100%则完全是深褐色的，值为0%图像无变化。值在0%到100%之间，则是效果的线性乘子。若未设置，值默认是0；</p>
+</blockquote>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">-css:</div><div class="line"> .sepia &#123;</div><div class="line">            -webkit-filter: sepia(100%);</div><div class="line">        &#125;</div><div class="line">-html :</div><div class="line">   &lt;!--原图--&gt;</div><div class="line">    &lt;div class=&quot;img-one&quot;&gt;</div><div class="line"></div><div class="line">    &lt;/div&gt;</div><div class="line">    &lt;!--sepia--&gt;</div><div class="line">    &lt;div class=&quot;img-one sepia&quot;&gt;</div><div class="line"></div><div class="line">    &lt;/div&gt;</div></pre></td></tr></table></figure>
+<p><img src="http://upload-images.jianshu.io/upload_images/1956910-56fd61ea2db62df7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="sepia.png"></p>
+<h1 id="结束"><a href="#结束" class="headerlink" title="结束"></a>结束</h1><p>下次介绍一下如何制作毛玻璃效果</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/web/" rel="tag"># web</a>
+          
+            <a href="/tags/css/" rel="tag"># css</a>
+          
+            <a href="/tags/滤镜/" rel="tag"># 滤镜</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/09/web开发笔记-垂直居中/" rel="next" title="web开发笔记-垂直居中">
+                <i class="fa fa-chevron-left"></i> web开发笔记-垂直居中
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/08/29/Web开发笔记之transform/" rel="prev" title="Web开发笔记之transform">
+                Web开发笔记之transform <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://img0.imgtn.bdimg.com/it/u=214261075,182751371&fm=27&gp=0.jpg"
+               alt="小貔貅" />
+          <p class="site-author-name" itemprop="name">小貔貅</p>
+          <p class="site-description motion-element" itemprop="description">宠辱不惊，闲看庭前花开花落；去留无意，漫随天外云卷云舒</p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#内容"><span class="nav-number">2.</span> <span class="nav-text">内容</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">2.1.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#-1"><span class="nav-number">2.2.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#-2"><span class="nav-number">2.3.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#-3"><span class="nav-number">2.4.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#-4"><span class="nav-number">2.5.</span> <span class="nav-text"></span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#结束"><span class="nav-number">3.</span> <span class="nav-text">结束</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">小貔貅</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid="></script>
+      <!-- UY END -->
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

@@ -1,0 +1,728 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="web,css,transform," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="简介今天在做一个抽奖demo时,突然发现自己对变换属性(transform)理解的不是很到位,于是各种翻阅资料,总算是理清了一些思路,故在此总结一下心得.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Web开发笔记之transform">
+<meta property="og:url" content="https://pixiuyan.github.io/2016/08/29/Web开发笔记之transform/index.html">
+<meta property="og:site_name" content="(●´∀｀●)ﾉ">
+<meta property="og:description" content="简介今天在做一个抽奖demo时,突然发现自己对变换属性(transform)理解的不是很到位,于是各种翻阅资料,总算是理清了一些思路,故在此总结一下心得.">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1956910-2ee3dd0d3a0db6ab.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1956910-2ea3a526a50a721b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1956910-2318fcbd814eb560.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1956910-59b9c76f57fbad66.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1956910-8105766c3b7c8ba9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1956910-bf1d2ae234ab9032.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1956910-126ecd535e40e9bd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1956910-420bdede227b49f4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1956910-4c6b76f186b9c4a1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1956910-883a1f4abe15b062.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2017-10-18T23:52:36.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Web开发笔记之transform">
+<meta name="twitter:description" content="简介今天在做一个抽奖demo时,突然发现自己对变换属性(transform)理解的不是很到位,于是各种翻阅资料,总算是理清了一些思路,故在此总结一下心得.">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/1956910-2ee3dd0d3a0db6ab.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://pixiuyan.github.io/2016/08/29/Web开发笔记之transform/"/>
+
+
+
+
+
+  <title> Web开发笔记之transform | (●´∀｀●)ﾉ </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">(●´∀｀●)ﾉ</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle">个人技术博客</p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://pixiuyan.github.io/2016/08/29/Web开发笔记之transform/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="小貔貅">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="http://img0.imgtn.bdimg.com/it/u=214261075,182751371&fm=27&gp=0.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="(●´∀｀●)ﾉ">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="(●´∀｀●)ﾉ" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Web开发笔记之transform
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-08-29T07:34:21+08:00">
+                2016-08-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>今天在做一个抽奖demo时,突然发现自己对变换属性<code>(transform)</code>理解的不是很到位,于是各种翻阅资料,总算是理清了一些思路,故在此总结一下心得.</p>
+ <a id="more"></a>
+<h1 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h1><p>首先先介绍一些transform属性,在此我只针对rotate(),translate(),scale()这三个参数进行分析,其余的以后会再说.</p>
+<blockquote>
+<p>Transform属性应用于元素的2D或3D转换。这个属性允许你将元素旋转，缩放，移动，倾斜等。</p>
+</blockquote>
+<ul>
+<li><p>translate (位移)</p>
+<p>translate主要用于改变元素的在坐标系上的偏移量.</p>
+<ul>
+<li><p>translateX<br><code>translateX()</code>可以改变元素在x轴上的偏移量.例如下图:</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1956910-2ee3dd0d3a0db6ab.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="translateX.png"></p>
+</li>
+<li>translateY</li>
+</ul>
+<p><code>translateY()</code>可以改变元素在Y轴上的偏移量.例如下图:</p>
+<p> <img src="http://upload-images.jianshu.io/upload_images/1956910-2ea3a526a50a721b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="translateY.png"></p>
+<ul>
+<li>translateZ</li>
+</ul>
+<p><code>translateZ()</code>可以改变元素在Z轴上的偏移量.例如下图: </p>
+<p> <img src="http://upload-images.jianshu.io/upload_images/1956910-2318fcbd814eb560.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="translateZ.png"></p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">translateZ属于3D变换范畴,在此我只做简单介绍,</div><div class="line">我会在后续的笔记中做一个关于3D变换的总结.</div></pre></td></tr></table></figure>
+</li>
+<li><p>rotate (旋转)</p>
+<p> rotate可以再在一个给定度数<code>顺时针</code>旋转的元素。负值是允许的，这样是元素逆时针旋转。单位是<code>deg(度)</code></p>
+<ul>
+<li><p>rotateX<br><code>rotateX()</code>可以使元素沿着x轴旋转,例图如下:</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1956910-59b9c76f57fbad66.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="rotateX.png"></p>
+</li>
+</ul>
+<ul>
+<li><p>rotateY<br><code>rotateY()</code>可以使元素沿着Y轴旋转,例图如下:</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1956910-8105766c3b7c8ba9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="rotateY.png"></p>
+</li>
+<li><p>rotateZ<br><code>rotateZ()</code>可以使元素沿着Z轴旋转,例图如下:</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1956910-bf1d2ae234ab9032.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="rotateZ.png"></p>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code>tip: rotate()和rotateZ()效果是相同的,
+区别在于rotate适用于2D旋转,而rotateZ
+适用于3D旋转中. 可以互相替换,但不建议这样.
+</code></pre><ul>
+<li><p>scale (缩放)<br>scale定义了元素的缩放转换,可以增加或减少元素的大小.并且以初始状态为1.</p>
+<ul>
+<li><p>scaleX</p>
+<p><code>scaleX()</code>通过设置 X 轴的值来定义缩放转换。可以简单的认为是改变宽度的大小. 例图如下:</p>
+</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/1956910-126ecd535e40e9bd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="scaleX.png"></p>
+<ul>
+<li>scaleY<br><code>scaleY()</code>通过设置Y轴的值来定义缩放转换。可以简单的认为是改变高度的大小<br>例图如下:</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/1956910-420bdede227b49f4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="scaleY.png"></p>
+</li>
+</ul>
+<p>  <code>关于scaleZ()我将写入有关3d变换总结的笔记中,
+所以在此不继续介绍了 .</code></p>
+<p> <br><br> tip: 关于它们混合使用,我要强调一下,因为rotate() 是靠旋转坐标轴来改变元素的. 所以translate() 和rotate()混合 使用时,会因其顺序位置而有所不同.例图如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">transform: translateX(50px) rotateZ(45deg);</div></pre></td></tr></table></figure>
+<p><img src="http://upload-images.jianshu.io/upload_images/1956910-4c6b76f186b9c4a1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="tx50-rz45.png"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">transform: rotateZ(45deg) translateX(50px) ;</div></pre></td></tr></table></figure>
+<p><img src="http://upload-images.jianshu.io/upload_images/1956910-883a1f4abe15b062.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="rz45-tx50.png"></p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p> 依旧是关于translate和rotate的混合使用,我说一下自己的理解,rotateZ()就是Z轴固定不动,x轴和y轴所构成的面绕着z轴旋转.x轴,y轴都会改变.其他情况我没有做详细的测试,你们可以自己做个例子试试看.额……我本想画个图来描述一下,奈何本人不会使用画图工具,不过日后我会把这个图补上的,还请多包涵.</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/web/" rel="tag"># web</a>
+          
+            <a href="/tags/css/" rel="tag"># css</a>
+          
+            <a href="/tags/transform/" rel="tag"># transform</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/19/web开发笔记-css3-滤镜的使用/" rel="next" title="web开发笔记-css3 滤镜的使用">
+                <i class="fa fa-chevron-left"></i> web开发笔记-css3 滤镜的使用
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/02/22/浅谈对viewport的理解/" rel="prev" title="浅谈对viewport的理解">
+                浅谈对viewport的理解 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://img0.imgtn.bdimg.com/it/u=214261075,182751371&fm=27&gp=0.jpg"
+               alt="小貔貅" />
+          <p class="site-author-name" itemprop="name">小貔貅</p>
+          <p class="site-description motion-element" itemprop="description">宠辱不惊，闲看庭前花开花落；去留无意，漫随天外云卷云舒</p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#内容"><span class="nav-number">2.</span> <span class="nav-text">内容</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">小貔貅</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid="></script>
+      <!-- UY END -->
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

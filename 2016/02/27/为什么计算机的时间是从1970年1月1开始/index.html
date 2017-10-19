@@ -1,0 +1,675 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="unix,unix时间戳," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="问题的来源当我们用js输入一下代码时:123let date = new Date()console.log(date.getTime()) //1488159428585
+会发现终端打印出一个很大的整数(1488159428585),那么这个数字代表什么呢?经过查阅,我才知道这个整数代表着如今的时间与1970年1月1日0时0分0秒的时间差(以秒为单位),也就是说从1970年1月1日0时0分0秒到">
+<meta property="og:type" content="article">
+<meta property="og:title" content="为什么计算机的时间是从1970年1月1开始?">
+<meta property="og:url" content="https://pixiuyan.github.io/2016/02/27/为什么计算机的时间是从1970年1月1开始/index.html">
+<meta property="og:site_name" content="(●´∀｀●)ﾉ">
+<meta property="og:description" content="问题的来源当我们用js输入一下代码时:123let date = new Date()console.log(date.getTime()) //1488159428585
+会发现终端打印出一个很大的整数(1488159428585),那么这个数字代表什么呢?经过查阅,我才知道这个整数代表着如今的时间与1970年1月1日0时0分0秒的时间差(以秒为单位),也就是说从1970年1月1日0时0分0秒到">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2139793-54a7ef5246f05e06.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://img.mukewang.com/55d3fdfb0001704d05000322.jpg">
+<meta property="og:updated_time" content="2017-10-18T23:46:06.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="为什么计算机的时间是从1970年1月1开始?">
+<meta name="twitter:description" content="问题的来源当我们用js输入一下代码时:123let date = new Date()console.log(date.getTime()) //1488159428585
+会发现终端打印出一个很大的整数(1488159428585),那么这个数字代表什么呢?经过查阅,我才知道这个整数代表着如今的时间与1970年1月1日0时0分0秒的时间差(以秒为单位),也就是说从1970年1月1日0时0分0秒到">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/2139793-54a7ef5246f05e06.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://pixiuyan.github.io/2016/02/27/为什么计算机的时间是从1970年1月1开始/"/>
+
+
+
+
+
+  <title> 为什么计算机的时间是从1970年1月1开始? | (●´∀｀●)ﾉ </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">(●´∀｀●)ﾉ</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle">个人技术博客</p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://pixiuyan.github.io/2016/02/27/为什么计算机的时间是从1970年1月1开始/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="小貔貅">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="http://img0.imgtn.bdimg.com/it/u=214261075,182751371&fm=27&gp=0.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="(●´∀｀●)ﾉ">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="(●´∀｀●)ﾉ" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                为什么计算机的时间是从1970年1月1开始?
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-02-27T09:34:06+08:00">
+                2016-02-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="问题的来源"><a href="#问题的来源" class="headerlink" title="问题的来源"></a>问题的来源</h1><p>当我们用js输入一下代码时:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">let</span> date = <span class="keyword">new</span> <span class="built_in">Date</span>()</div><div class="line"><span class="built_in">console</span>.log(date.getTime()) <span class="comment">//1488159428585</span></div></pre></td></tr></table></figure></p>
+<p>会发现终端打印出一个很大的整数(1488159428585),那么这个数字代表什么呢?<br>经过查阅,我才知道这个整数代表着如今的时间与<code>1970年1月1日0时0分0秒</code>的时间差(以秒为单位),也就是说从<code>1970年1月1日0时0分0秒</code><br>到现在已经过了<code>1488159428585</code>秒了.那么问题来了,为什么要从<code>1970年1月1日0时0分0秒</code>开始呢?</p>
+  <a id="more"></a>
+<h1 id="Epoch-Time-UNIX纪元"><a href="#Epoch-Time-UNIX纪元" class="headerlink" title="Epoch Time  (UNIX纪元)"></a>Epoch Time  (UNIX纪元)</h1><p><img src="http://upload-images.jianshu.io/upload_images/2139793-54a7ef5246f05e06.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Epoch"></p>
+<p>Epoch Time 指一个特定的时间：1970-01-01 00:00:00 UTC。而UNIX系统认为Epoch Time便是时间纪元,也就是说在UNIX系统中,一切的时间会以<code>1970年1月1日0时0分0秒</code>为一个基点,然后通过经过秒数再来计算现如今的时间.<br>那 1970 年发生了什么，以至于 Unix 系统以它作 “纪元”。</p>
+<p>原来 Unix 就是在那个时代产生的，1969 年发布的雏形，最早是基于硬件 60Hz 的时间计数。</p>
+<p>1971年底出版的《Unix Programmer’s Manual》里定义的 Unix Time 是以 1971年1月1日00:00:00 作为起始时间，每秒增长 60。考虑到 32 位整数的范围，如果每秒 60 个数字，则两年半就会循环一轮，于是改成以秒为计数单位。循环周期有136年之长，就不在乎起始时间是 1970 还是 1971 年，遂改成人工记忆、计算比较方便的1970年。<br>于是Unix 的世界开启了 “纪元”，Unix 时间戳也就成为了一个专有名称。</p>
+<blockquote>
+<p>Unix 时间戳是一种时间表示方式，定义为从格林尼治时间 1970年01月01日 00时00分00秒 起至现在的总秒数，不考虑闰秒。</p>
+</blockquote>
+<h1 id="时间回归问题"><a href="#时间回归问题" class="headerlink" title="时间回归问题"></a>时间回归问题</h1><ul>
+<li><p>问题起源</p>
+<p> 最初计算机操作系统是32位，而时间也是用32位表示.</p>
+<p> int在java中是4字节,32位.并且第一位是符号位,所以其能表示的最大值是2147483647.(<code>2^31-1</code>).另外1年365天的总秒数是 31536000，2147483647/31536000 = 68.1，也就是说32位能表示的最长时间是68年，从1970年开始的话，加上68.1，实际最终到2038年01月19日03时14分07秒，便会到达最大时间，过了这个时间点，所有32位操作系统时间便会变为10000000 00000000 00000000 00000000，计算后(根据补码计算)也就是1901年12月13日20时45分52秒，这样便会出现时间回归的现象，很多软件便会运行异常了。</p>
+</li>
+<li><p>解决办法</p>
+<p> 至于时间回归的现象随着64为操作系统的产生逐渐得到解决，因为用64位操作系统可以表示到 292,277,026,596年12月4日15时30分08秒，相信我们的N代子孙，哪怕地球毁灭那天都不用愁不够用了，因为这个时间已经是千亿年以后了。</p>
+</li>
+</ul>
+<p><img src="http://img.mukewang.com/55d3fdfb0001704d05000322.jpg" alt="time"></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/unix/" rel="tag"># unix</a>
+          
+            <a href="/tags/unix时间戳/" rel="tag"># unix时间戳</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/02/11/同步-异步-阻塞-非阻塞/" rel="next" title="同步,异步,阻塞,非阻塞">
+                <i class="fa fa-chevron-left"></i> 同步,异步,阻塞,非阻塞
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/07/10/web开发笔记之meta标签/" rel="prev" title="web开发笔记之meta标签">
+                web开发笔记之meta标签 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://img0.imgtn.bdimg.com/it/u=214261075,182751371&fm=27&gp=0.jpg"
+               alt="小貔貅" />
+          <p class="site-author-name" itemprop="name">小貔貅</p>
+          <p class="site-description motion-element" itemprop="description">宠辱不惊，闲看庭前花开花落；去留无意，漫随天外云卷云舒</p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#问题的来源"><span class="nav-number">1.</span> <span class="nav-text">问题的来源</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Epoch-Time-UNIX纪元"><span class="nav-number">2.</span> <span class="nav-text">Epoch Time  (UNIX纪元)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#时间回归问题"><span class="nav-number">3.</span> <span class="nav-text">时间回归问题</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">小貔貅</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid="></script>
+      <!-- UY END -->
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
